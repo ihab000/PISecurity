@@ -52,6 +52,8 @@ while True:
         name,
         photoPath,
         content_settings=ContentSettings(content_type='image/jpg'))
+    os.remove(photoPath)
+    print("File sent to Azure!")
     time.sleep(5)
     
 
