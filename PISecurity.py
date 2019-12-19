@@ -20,7 +20,7 @@ def get_filename_datetime():
 
 def notify_by_email():
     gmail_user = 'killiansraspberrypi@gmail.com'
-    gmail_password = 'MoW@x057xx'
+    gmail_password = 'password'
 
     sent_from = gmail_user
     to = ["killiansraspberrypi@gmail.com", "killbags@gmail.com"]
@@ -60,8 +60,7 @@ def send_to_azure(fileService, fileName, filePath):
     print("File sent to Azure!")
 
 # Login Details for Azure Storage
-file_service = FileService(account_name='killianoneachtain', account_key='zqhzrvi/xUtwnmkY1RPM21+9UognHjjgu5SgDnSNP7VxGkSXA6YFDSwrmGIBwLJ7n92YPPhvHj/5b+P7s1ua/g==')
-
+file_service = FileService(account_name='killianoneachtain', account_key='')
 file_service.create_share('security')
 file_service.create_directory('security', 'securityPhotos')
 
