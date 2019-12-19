@@ -87,12 +87,12 @@ def send_mail(send_from: str, subject: str, text: str, send_to: list, files= Non
     print ('Email sent')
 
 # Gmail login details
-username = 'killiansraspberrypi@gmail.com'
-password = 'MoW@x057xx'
+username = ''
+password = ''
 default_address = ['killiansraspberrypi@gmail.com'] 
 
 # Login Details for Azure Storage
-file_service = FileService(account_name='killianoneachtain', account_key='zqhzrvi/xUtwnmkY1RPM21+9UognHjjgu5SgDnSNP7VxGkSXA6YFDSwrmGIBwLJ7n92YPPhvHj/5b+P7s1ua/g==')
+file_service = FileService(account_name='killianoneachtain', account_key='')
 
 file_service.create_share('security')
 file_service.create_directory('security', 'securityPhotos')
