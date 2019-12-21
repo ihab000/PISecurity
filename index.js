@@ -6,9 +6,13 @@ var blynk = new Blynk.Blynk(AUTH);
 
 var v1 = new blynk.VirtualPin(1);
 
+const shell = require('shelljs')
+
 v1.on('write', function(param) {
   if (param == 1) {
-	runScript() };
+	runScript() }
+	if (param == 0) {
+		shell.exec('/home/pi/Assignment2/stop.sh')	};
 });
 
 
@@ -19,7 +23,7 @@ const { spawn } = require('child_process')
 const logOutput = (name) => (data) => console.log(`[${name}] ${data.toString()}`)
 
 function run() {
-  const process = spawn('python3', ['./PISecurityv2.py']);
+  const process = spawn('python3', ['/home/pi/Assignment2/PISecurityv4.py']);
 
 
   process.stdout.on(
@@ -32,10 +36,6 @@ function run() {
     logOutput('stderr')
   );
 
-  process.stdin.on(
-    'data',
-    logOutput('stdin')
-  );
 }
 
 (() => {

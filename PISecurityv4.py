@@ -3,8 +3,6 @@ import time
 import os
 import requests
 
-#from idle_time import IdleMonitor
-
 from azure.storage.file import FileService
 from azure.storage.file import ContentSettings
 
@@ -20,25 +18,23 @@ from picamera import PiCamera
 
 pir = MotionSensor(4)
 camera = PiCamera()
-#monitor = IdleMonitor.get_monitor()
 
 photoList = []
 timeList = []
 
 def time_since_last_photo(last_photo_time):
-    # Use to get idle time of program
     now = datetime.now()
     time_waiting = now - last_photo_time
     return time_waiting
 
-def send_all_attachements(list_of_photos):
+def send_all_attachments(list_of_photos):
     send_mail(send_from= username,
               subject="There was a caller to the your Door",
               text=emailBody,
               send_to=["20023634@mail.wit.ie"],
               files=list_of_photos)
     for index in range(len(list_of_photos)):
-        os.remove(index)
+        os.remove(photoList[index])
     list_of_photos.clear()
 
 def get_filename_datetime():
@@ -87,12 +83,12 @@ def send_mail(send_from: str, subject: str, text: str, send_to: list, files= Non
     print ('Email sent')
 
 # Gmail login details
-username = ''
-password = ''
+username = 'killiansraspberrypi@gmail.com'
+password = 'MoW@x057xx'
 default_address = ['killiansraspberrypi@gmail.com'] 
 
 # Login Details for Azure Storage
-file_service = FileService(account_name='killianoneachtain', account_key='')
+file_service = FileService(account_name='killianoneachtain', account_key='zqhzrvi/xUtwnmkY1RPM21+9UognHjjgu5SgDnSNP7VxGkSXA6YFDSwrmGIBwLJ7n92YPPhvHj/5b+P7s1ua/g==')
 
 file_service.create_share('security')
 file_service.create_directory('security', 'securityPhotos')
@@ -100,9 +96,6 @@ file_service.create_directory('security', 'securityPhotos')
 cwd = os.getcwd()  # Get the current working directory (cwd)
 path = cwd + "/securityPhotos"
 access_rights = 0o755
-
-print ('I AM HERE!')
-
 
 # create a photo directory if none exists
 try:
