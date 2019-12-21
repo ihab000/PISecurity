@@ -31,7 +31,7 @@ def send_all_attachments(list_of_photos):
     send_mail(send_from= username,
               subject="There was a caller to the your Door",
               text=emailBody,
-              send_to=["20023634@mail.wit.ie"],
+              send_to=["your_recipient"],
               files=list_of_photos)
     for index in range(len(list_of_photos)):
         os.remove(photoList[index])
@@ -51,7 +51,6 @@ def send_to_azure(fileService, fileName, filePath):
         fileName,
         filePath,
         content_settings=ContentSettings(content_type='image/jpg'))
-#    os.remove(photoPath)
     print("File sent to Azure!")
     
 def send_mail(send_from: str, subject: str, text: str, send_to: list, files= None):
@@ -83,13 +82,12 @@ def send_mail(send_from: str, subject: str, text: str, send_to: list, files= Non
     print ('Email sent')
 
 # Gmail login details
-username = 'killiansraspberrypi@gmail.com'
-password = 'MoW@x057xx'
-default_address = ['killiansraspberrypi@gmail.com'] 
+username = '@gmail.com'
+password = ''
+default_address = [] 
 
 # Login Details for Azure Storage
-file_service = FileService(account_name='killianoneachtain', account_key='zqhzrvi/xUtwnmkY1RPM21+9UognHjjgu5SgDnSNP7VxGkSXA6YFDSwrmGIBwLJ7n92YPPhvHj/5b+P7s1ua/g==')
-
+file_service = FileService(account_name='killianoneachtain', account_key='')
 file_service.create_share('security')
 file_service.create_directory('security', 'securityPhotos')
 
