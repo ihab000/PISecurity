@@ -3,22 +3,21 @@ Raspberry PI 4 based security IoT project
 
 # Hardware Required
 
-Raspberry PI 4 with Internet/WiFi connection and Camera connection enabled
-PIR Module for Raspberry Pi
-Raspberry Pi Camera (B01)
+- Raspberry PI 4 with Internet/WiFi connection and Camera connection enabled
+- PIR Module for Raspberry Pi
+- Raspberry Pi Camera (B01)
 
 # Software Required
 
-Node.js
-Python(3.*)
-Raspbian Buster / Buster Lite
-Blynk
-NPM Shell
+- Node.js
+- Python(3.*)
+- Raspbian Buster / Buster Lite
+- Blynk
 
-# Cloud Applications
+# Mobile Applications
 
-Blynk with On/Off button project 
-Microsoft Azure Storage account
+- Blynk with On/Off button project 
+- Microsoft Azure Storage account
 
 # Project Scope
 
@@ -33,3 +32,6 @@ The python script checks the timer and on timeout or list exceeds 16, it will at
 
 To stop the process, deactivate (off) via the Blynk app. 
 
+The node will still be running, and active. Only the python script will be stopped. To reactivate the security camera, ensure the button is 'on', using the Blynk app on your device.
+
+- Killian O'Neachtain
