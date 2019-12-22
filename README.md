@@ -12,17 +12,18 @@ Raspberry PI 4 based security IoT project
 - Node.js
 - Python(3.*)
 - Raspbian Buster / Buster Lite
-- Blynk
+- Blynk 
 
 # Mobile Applications
 
-- Blynk with On/Off button project 
-- Microsoft Azure Storage account including account key
+- Blynk with On/Off button project (including 'auth' key for project)
+- Microsoft Azure Storage account (including and account key account key)
+- gmail account
 
-# Files and File Locations
+# Files and File Locations (to execute system)
 
 - Add line 'sudo node /home/pi/yourDirectory/index.js &' to '/etc/rc.local' file
-- PISecurityv4.py and index.js to be in same directory
+- PISecurityv4.py, stop.sh and index.js to be in same directory but not requirement
 - *The securityPhoto folder will be created on execution if doesn't exist
 
 # Project Scope
