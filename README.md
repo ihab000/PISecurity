@@ -17,7 +17,13 @@ Raspberry PI 4 based security IoT project
 # Mobile Applications
 
 - Blynk with On/Off button project 
-- Microsoft Azure Storage account
+- Microsoft Azure Storage account including account key
+
+# Files and File Locations
+
+- Add line 'sudo node /home/pi/yourDirectory/index.js &' to '/etc/rc.local' file
+- PISecurityv4.py and index.js to be in same directory
+- *The securityPhoto folder will be created on execution if doesn't exist
 
 # Project Scope
 
