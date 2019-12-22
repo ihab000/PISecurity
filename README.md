@@ -23,7 +23,7 @@ Raspberry PI 4 based security IoT project
 # Files and File Locations (to execute system)
 
 - Add line 'sudo node /home/pi/yourDirectory/index.js &' to '/etc/rc.local' file
-- PISecurityv4.py, stop.sh and index.js to be in same directory but not requirement
+- PISecurityv4.py, stop.sh and index.js to be in same directory (amend filepaths appropriately)
 - *The securityPhoto folder will be created on execution if doesn't exist
 
 # Project Scope
