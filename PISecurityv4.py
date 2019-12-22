@@ -28,13 +28,16 @@ def time_since_last_photo(last_photo_time):
     return time_waiting
 
 def send_all_attachments(list_of_photos):
+    # send an email with attachments for photo list
     send_mail(send_from= username,
               subject="There was a caller to the your Door",
               text=emailBody,
               send_to=["your_recipient"],
               files=list_of_photos)
+    # iterate through list to delete photos
     for index in range(len(list_of_photos)):
         os.remove(photoList[index])
+    # clear the contents of the photo list
     list_of_photos.clear()
 
 def get_filename_datetime():
@@ -82,17 +85,18 @@ def send_mail(send_from: str, subject: str, text: str, send_to: list, files= Non
     print ('Email sent')
 
 # Gmail login details
-username = '@gmail.com'
-password = ''
+username = 'you@gmail.com'
+password = 'PASSWORD'
 default_address = [] 
 
 # Login Details for Azure Storage
-file_service = FileService(account_name='killianoneachtain', account_key='')
+file_service = FileService(account_name='killianoneachtain', account_key='KEY')
 file_service.create_share('security')
 file_service.create_directory('security', 'securityPhotos')
 
 cwd = os.getcwd()  # Get the current working directory (cwd)
 path = cwd + "/securityPhotos"
+# change file permissions
 access_rights = 0o755
 
 # create a photo directory if none exists
@@ -108,14 +112,10 @@ path = cwd + "/securityPhotos/"
 now = datetime.now()
 timeList.append(now)
 
-two_minutes = timedelta(days=0,hours=0,minutes=0,seconds=30)
-
-motion_counter = 0
+timeout = timedelta(days=0,hours=0,minutes=0,seconds=30)
 
 date_time = now.strftime("%m/%d/%Y, %H:%M:%S")
 emailBody = "Dear Customer, \nThere was a caller to your door at " + date_time + ". \nPlease find photo's attached for the recent motion.\n\n\n\n"
-
-
 
 while True:
     #Get last entered datetime in timeList
@@ -130,10 +130,8 @@ while True:
     timer = timedelta(days=0,hours=0,minutes=0)
     
     while True:
-        print ('Here in the waiting place')
         timer = time_since_last_photo(timeList[last_time])
-        print (timer)
-        if(timer > two_minutes):
+        if(timer > timeout):
             #   gmail with attachments
             send_all_attachments(photoList)
             break
@@ -143,15 +141,6 @@ while True:
             break
         elif(number_of_photos == 15):
             send_all_attachments(photoList)
-            
-    
-    #timeList.append(then)
-    
-    #print ('First ran at ' + now.strftime("%m/%d/%Y, %H:%M:%S"))
-    print (photoList)
-    #print ('Current time ' + waiting_time.strftime("%m/%d/%Y, %H:%M:%S"))
-    print (timeList)
-    print ('Count of timeList is : ' + str(len(timeList)))    
     
     # program waits here until there is a motion sensed
     pir.wait_for_motion()
@@ -160,11 +149,10 @@ while True:
     photoPath = path + name
     photoList.append(photoPath)
     print("Motion DETECTED!")
-    #now get time2 here
-    # if time2 - time1 > 2 minutes
+    
     camera.capture(photoPath)
+    
     #send files to Azure storage
     send_to_azure(file_service, name, photoPath)
-    #here save the time
-    #then = datetime.now()
+ 
     time.sleep(5)
